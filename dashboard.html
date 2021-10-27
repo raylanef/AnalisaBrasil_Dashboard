@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="container">
+      <h1> Analisa<span class="highlight">Brasil</span></h1>
+    </div>
+  </div>
+
+  <div class="dash-container">
+    <div class="graph">
+      <Canvas id="chartjs_line" style="width: 100%;height: 100%;"></Canvas>
+    </div>
+
+
+    <div class="graph">
+      <Canvas id="chartjs_pie" style="width: 100%;height: 100%;"></Canvas>
+
+    </div>
+
+    <div class="graph">
+      <Canvas id="chartjs_bar" style="width: 100%;height: 100%;"></Canvas>
+
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  var ctx_line = document.getElementById('chartjs_line').getContext('2d');
+  var ctx_pie = document.getElementById('chartjs_pie').getContext('2d');
+  var ctx_bar = document.getElementById('chartjs_bar').getContext('2d');
+
+
+  var config = {
+    type: 'line',
+    data: {
+      labels: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'],
+      datasets: [{
+        label: 'Salário Mínimo',
+        data: [540, 622, 678, 724, 788, 880, 937, 954, 998, 1045, 1100],
+        backgroundColor: [
+          '#fff7bc',
+          '#fff077',
+          '#fce903',
+          '#0cebe15',
+          '#a19519',
+          '#776d19',
+          '#84f4816',
+          '#2a2610'
+
+
+        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  }
+
+
+  var data_2 = {
+    labels: [
+      'Norte',
+      'Nordeste',
+      'Sudeste',
+      'Sul',
+      'Centro-Oeste'
+    ],
+    datasets: [{
+      label: 'Desemprego por região (%)',
+      data: [10.6, 13.6, 11.4, 6.8, 9.3],
+      backgroundColor: [
+        '#003424',
+        '#2c5243',
+        '#cbff7b',
+        '#adff2f',
+        '#a6b6af',
+        '#d2dad6'
+      ],
+      hoverOffset: 4
+    }]
+
+  };
+
+  var config_2 = {
+    type: 'pie',
+    data: data_2,
+    options: {
+      maintainAspectRatio: false
+    }
+  };
+
+  var config_3 = {
+    type: 'bar',
+    data: {
+      labels: ['Norte', 'Nordeste', 'Sudeste', 'Sul', 'Centro-Oste'],
+      datasets: [{
+        label: 'Média Sálario por Região',
+        data: [1711, 1539, 2585, 2499, 2498],
+        backgroundColor: [
+          '#111a22',
+          '#1b405c',
+          '#156b9e',
+          '#7aaad6',
+          '#bfd3eb'
+        ],
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  }
+
+  var myChartjs = new Chart(ctx_line, config);
+  var myChart_2 = new Chart(ctx_pie, config_2);
+  var myChart_3 = new Chart(ctx_bar, config_3);
+
+</script>
